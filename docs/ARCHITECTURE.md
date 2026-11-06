@@ -2,27 +2,26 @@
 
 ## Purpose
 
-`trysac-prompt-regression` is a small, dependency-free Python library: Compare recorded outputs of two prompt versions over the same dataset and report unchanged, changed, improved, regressed, added and removed cases
+`trysac-prompt-regression` is a small, dependency-free Python package that compares recorded outputs of two prompt versions over the same dataset and reports unchanged, changed, improved, regressed, added and removed cases.
 
 ## Shape
 
 ```text
-caller code --> prompt_regression (public API in __init__.py)
-                    |
-                    +-- pure functions, no I/O, no global state
+caller code / CLI --> prompt_regression
+    load_run (JSONL reader, bounded)
+    Normalizer (text normalisation)
+    compare (alignment by case id, status)
+    render (markdown or JSON)
 ```
 
-- **Public API**: the names listed in `__all__` of `src/prompt_regression/__init__.py`. Anything else is
-  internal and may change without a major version.
-- **Errors**: invalid input raises built-in exceptions (`ValueError`, `TypeError`) with a clear
-  message; the library never prints or exits.
-- **Side effects**: none. If a feature needs I/O, isolate it in its own module behind a small
-  interface and record the choice in an ADR.
+- **Modules**: `loader.py` (reads JSONL), `normalizer.py`, `comparison.py` (alignment and `compare`), `report.py` (`render`), `errors.py` (`RegressionError`), `__main__.py` (command line).
+- **Public API**: the names listed in `__all__` of `src/prompt_regression/__init__.py`. Anything else is internal.
+- **Errors**: invalid input raises `RegressionError` with a stable `code`. The library itself does not print or exit; the CLI writes to stderr and returns exit code 2.
+- **I/O**: only `load_run` reads files; it is the only function that touches the file system.
 
 ## Quality contract
 
-`scripts/check.py` is the single definition of the gates; `fabrica.json` tells the factory and CI
-how to run it. See [TESTING.md](TESTING.md).
+The gates are described in [TESTING.md](TESTING.md).
 
 ## Decisions
 

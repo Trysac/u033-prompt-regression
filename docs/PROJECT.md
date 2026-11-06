@@ -2,12 +2,13 @@
 
 ## Objective
 
-Compare recorded outputs of two prompt versions over the same dataset and report unchanged, changed, improved, regressed, added and removed cases
+Compare recorded outputs of two prompt versions over the same dataset and report unchanged, changed, improved, regressed, added and removed cases, so that reviewers see which cases now answer differently. Manual diffs of JSONL runs are noisy because of whitespace and key order; the utility normalizes both sides before comparing.
 
 ## Scope
 
-- In scope: the public API documented in [README.md](../README.md), typed and tested.
-- Out of scope: anything that needs runtime dependencies or I/O without an accepted ADR.
+- In scope: `load_run`, `Normalizer`, `compare`, `render`, `RegressionError`, and the command line `python -m prompt_regression`.
+- In scope: markdown and JSON reports; markdown output is escaped for pull request comments.
+- Out of scope: embeddings similarity, running prompts against models, HTML reports.
 
 ## Timeline
 

@@ -1,14 +1,13 @@
 # prompt-regression
 
-> Compare recorded outputs of two prompt versions over the same dataset and report unchanged, changed, improved, regressed, added and removed cases Python package `trysac-prompt-regression`, import name `prompt_regression`, MIT licensed,
-> Python >= 3.10, no runtime dependencies.
+> Compare recorded outputs of two prompt versions over the same dataset and report unchanged, changed, improved, regressed, added and removed cases. Python package `trysac-prompt-regression`, import name `prompt_regression`, MIT licensed, Python >= 3.10, no runtime dependencies.
 
 ## Docs
 
-- [README](README.md): problem, install, usage example
-- [AGENTS](AGENTS.md): commands, folder map, conventions, limits
-- [Architecture](docs/ARCHITECTURE.md): shape of the package and its public API
-- [Testing](docs/TESTING.md): how to run and extend the tests
+- [README](README.md): problem, install, usage example, public API
+- [Architecture](docs/ARCHITECTURE.md): modules and public API
+- [Testing](docs/TESTING.md): tests and how to run them
+- [Security](docs/SECURITY.md): threat model
 
 ## Optional
 
