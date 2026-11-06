@@ -181,7 +181,9 @@ def test_markdown_escapes_other_markup() -> None:
     assert "<summary>a&amp;b (changed)</summary>" in render(
         compare(run_of(rec("a&b", "x")), run_of(rec("a&b", "y"))), "markdown"
     )
-    report = render(compare(run_of(rec("</details>", "x")), run_of(rec("</details>", "y"))), "markdown")
+    report = render(
+        compare(run_of(rec("</details>", "x")), run_of(rec("</details>", "y"))), "markdown"
+    )
     assert "<summary>&lt;/details&gt; (changed)</summary>" in report
     lines = render(
         compare(run_of(rec("a\n# h", "x")), run_of(rec("a\n# h", "y"))), "markdown"
@@ -542,7 +544,9 @@ def test_cli_json_format(
 
 def test_cli_normalisation_flags(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     base = ["before.jsonl", "after.jsonl", "--fail-on", "changed"]
-    setup_cli(tmp_path, monkeypatch, [{"id": "a", "output": "Hello"}], [{"id": "a", "output": "hello"}])
+    setup_cli(
+        tmp_path, monkeypatch, [{"id": "a", "output": "Hello"}], [{"id": "a", "output": "hello"}]
+    )
     assert main(base) == 1
     assert main([*base, "--casefold"]) == 0
     first = {"id": "a", "output": '{"a":1,"b":2}'}
