@@ -19,6 +19,9 @@ classifiers = [
 ]
 dependencies = []
 
+[project.scripts]
+prompt-regression = "prompt_regression.__main__:main"
+
 [project.urls]
 Homepage = "https://github.com/Trysac/u033-prompt-regression"
 Source = "https://github.com/Trysac/u033-prompt-regression"

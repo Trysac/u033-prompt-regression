@@ -9,4 +9,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add `prompt_regression` to compare two recorded JSONL prompt runs by case id (`load_run`, `Normalizer`, `compare`, `render`) with a `python -m prompt_regression` CLI that reports unchanged, changed, improved, regressed, added and removed cases as escaped markdown or JSON.
 - Initial project structure from the factory utility template.
