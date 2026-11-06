@@ -114,7 +114,7 @@ def test_json_canonical_examples() -> None:
 
 def test_json_canonical_int_versus_float_literals() -> None:
     norm = Normalizer(strip=True, casefold=True, json_canonical=True)
-    # so it is 'unchanged' against '{"a": 2, "b": 1}'; '1' versus '1.0' is 'changed' (int versus float); done
+    # '1' versus '1.0' is 'changed' (int versus float)
     assert status_of("1", "1.0", norm) == "changed"
 
 
