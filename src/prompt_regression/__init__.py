@@ -1,21 +1,27 @@
-"""Compare recorded outputs of two prompt versions over the same dataset and report unchanged, changed, improved, regressed, added and removed cases"""
+"""Compare recorded outputs of two prompt versions and report the cases that changed."""
 
 from __future__ import annotations
 
-__all__ = ["__version__", "normalize"]
+import logging
+
+from prompt_regression.comparison import CaseDiff, Status, compare
+from prompt_regression.errors import RegressionError
+from prompt_regression.loader import RunRecord, load_run
+from prompt_regression.normalizer import Normalizer
+from prompt_regression.report import render
+
+__all__ = [
+    "CaseDiff",
+    "Normalizer",
+    "RegressionError",
+    "RunRecord",
+    "Status",
+    "__version__",
+    "compare",
+    "load_run",
+    "render",
+]
 
 __version__ = "0.1.0"
 
-
-def normalize(value: str) -> str:
-    """Return ``value`` trimmed and lower-cased.
-
-    Placeholder API created by the template: replace it with the utility's real behavior.
-
-    Raises:
-        ValueError: if ``value`` is empty or only whitespace.
-    """
-    cleaned = value.strip()
-    if not cleaned:
-        raise ValueError("value must not be empty")
-    return cleaned.lower()
+logging.getLogger(__name__).addHandler(logging.NullHandler())
