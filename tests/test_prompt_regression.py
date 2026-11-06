@@ -415,7 +415,7 @@ def test_load_run_file_size_limit(tmp_path: Path) -> None:
         load_run(path, max_bytes=10)
     assert excinfo.value.code == "input_too_large"
     assert excinfo.value.path == str(path)
-    path.write_text(GOOD_LINE + "\n", encoding="utf-8")
+    path.write_bytes((GOOD_LINE + "\n").encode("utf-8"))
     size = len(GOOD_LINE) + 1
     assert list(load_run(path, max_bytes=size)) == ["a"]
     with pytest.raises(RegressionError) as excinfo2:
